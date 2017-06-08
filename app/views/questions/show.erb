@@ -1,7 +1,9 @@
-<!-- line 2 will be the actual route once associated with questions -->
-<!-- <form action="/questions/<%#= question.id %>/votes" method="post"> -->
 
-<form action="/questions/votes" method="post">
+<h1>Title: <%= @question.title %></h1>
+<h3>Question: <%= @question.text %>
+<h4>Asked by: <%= @question.creator.name %></h4>
+
+<form action="/questions/:question_id/votes" method="post">
   <input type="submit" value="upvote">
   <input type="submit" value="downvote">
 </form>
