@@ -15,13 +15,13 @@ post 'questions/votes' do
   if params[:upvote]
     if uservote && uservote.value == 1
       @errors = ['Aaarp! you have already up voted for this :/']
-      erb :'/questions/show'
+      erb :'questions/show'
     elsif uservote && uservote.value == -1
       uservote.update_attributes(value: 1)
-      erb :'/questions/show'
+      erb :'questions/show'
     else
       vote = question.votes.create(user_id: session[:user_id], value: 1)
-      erb :'/questions/show'
+      erb :"/questions/show"  #should we redirect instead
     end
   elsif params[:downvote]
     if uservote && uservote.value = -1
@@ -30,6 +30,9 @@ post 'questions/votes' do
     elsif uservote && uservote.value = 1
       uservote.update_attributes(value: -1)
       erb :'questions/show'
+    else
+      vote = question.votes.create(user_id: session[:user_id], value: 1)
+      erb :'questions/show' #should we redirect instead
     end
   end
 end
