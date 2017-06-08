@@ -1,14 +1,21 @@
 <h1>Questions:</h1>
 
+
 <ul>
 <% @questions.each do |question| %>
-<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
-<% end %>
+    <li class="list-group-item">
+      <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      <span class="badge badge-pill badge-info">Votes <%= question.votes %></span>
+    </li>
+  <% end %>
 </ul>
 
-<!-- <form>
-  <input type="" name="" placeholder="">
-  <input type="" name="" placeholder="">
-  <input type="" name="" placeholder="">
-</form> -->
 
+<% if logged_in? %>
+<%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
+<form method="post" action="questions" >
+  <input type="text" name="title" placeholder="Title">
+  <input type="textarea" name="text" placeholder="My question is ...">
+  <input type="submit" value="Ask">
+</form>
+<% end %>
