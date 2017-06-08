@@ -3,7 +3,7 @@
 <h3>Question: <%= @question.text %>
 <h4>Asked by: <%= @question.creator.name %></h4>
 
-<!-- <%# if logged_in? %> votes for questions -->
+ <% if logged_in? %>
   <form action="/questions/<%= @question.id %>/votes" method="post">
     <input type="submit" name="upvote" value="upvote">
   </form>
@@ -11,12 +11,12 @@
   <form action="/questions/<%= @question.id %>/votes" method="post">
     <input type="submit" name="downvote" value="downvote">
 </form>
-<%# end %>
+<% end %>
 
 
 
 <!-- votes for answers -->
-<%# if logged_in? %>
+<% if logged_in? %>
   <form action="/answers/<%= @answer.id %>/votes" method="post">
     <input type="submit" name="upvote" value="upvote">
   </form>
@@ -24,7 +24,7 @@
   <form action="/answers/<%= @answer.id %>/votes" method="post">
     <input type="submit" name="upvote" value="upvote">
   </form>
-<%# end %>
+<% end %>
 
 
 
