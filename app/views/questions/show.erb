@@ -12,10 +12,14 @@
 <%# @questions.each do |question| %>
   <%#= question.votes.total_votes %>
 <%# end %>
-<h2>you have chosen <%= @question.best_answer_id %> as the best answer</h2>
+
 <ul>
 <% @question.answers.each do |answer| %>
-  <li><%= answer.text %> <form action="/answers/<%= answer.id %>" method="post"> <input type="hidden" name="_method" value="put"><input type="submit" value="best answer"></form></li>
+  <li><%= answer.text %>
+    <span class="best-answer"><% if @question.best_answer_id == answer.id %>
+    ** voted best answer **
+    <% end %></span>
+   <form action="/answers/<%= answer.id %>" method="post"> <input type="hidden" name="_method" value="put"><input type="submit" value="best answer"></form></li>
 <% end %>
 </ul>
 
