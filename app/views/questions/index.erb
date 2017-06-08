@@ -7,9 +7,11 @@
 <% end %>
 </ul>
 
+<% if logged_in? %>
 <%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
 <form method="post" action="questions" >
   <input type="text" name="title" placeholder="Title">
   <input type="textarea" name="text" placeholder="My question is ...">
   <input type="submit" value="Ask">
 </form>
+<% end %>
