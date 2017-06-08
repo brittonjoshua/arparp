@@ -1,14 +1,15 @@
 <h1>Questions:</h1>
 
+
 <ul>
 <% @questions.each do |question| %>
 <li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
 <% end %>
 </ul>
 
-<!-- <form>
-  <input type="" name="" placeholder="">
-  <input type="" name="" placeholder="">
-  <input type="" name="" placeholder="">
-</form> -->
-
+<%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
+<form method="post" action="questions" >
+  <input type="text" name="title" placeholder="Title">
+  <input type="textarea" name="text" placeholder="My question is ...">
+  <input type="submit" value="Ask">
+</form>
