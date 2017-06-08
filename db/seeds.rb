@@ -1,10 +1,17 @@
-3.times do
+5.times do
   user = User.new(name: Faker::Name.name, password: "password")
   user.email = Faker::Internet.safe_email(user.name)
   user.save!
 end
 
 users = User.all
+
+# may need to make some votes
+# 22.times do
+#   vote = Vote.new(voter: users.sample, value: [-1,0,1].sample)
+# end
+
+
 
 Question.create!(title: "Food?", text: "What do sea lions eat?", best_answer_id: 1, creator: users.all.sample)
 
@@ -23,6 +30,28 @@ Question.create!(title: "Old Age??", text: "How old do they get?", best_answer_i
 Question.create!(title: "Weight Per Feed", text: "What percentage of their body weight do they eat per feeding?", best_answer_id: 1, creator: users.all.sample)
 
 Question.create!(title: "Average Weight", text: "How much do they weigh on average", best_answer_id: 1, creator: users.all.sample)
+
+
+# 5.times do
+#   comments = Comment.new(text: Faker::Hipster.sentence, commentator_id: users.all.sample)
+# end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

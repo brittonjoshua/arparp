@@ -21,7 +21,7 @@ post '/sessions' do
       # redirect "/users/#{@user.id}"
     # end
   else
-    @errors = ["Unfortunately, the system could not either find your username or verify your password."]
+    @errors = ["Unfortunately, the system could not either find your email or verify your password."]
     erb :'/sessions/new'
   end
 end

@@ -1,14 +1,32 @@
 <h1>Questions:</h1>
 
-<ul>
-<% @questions.each do |question| %>
-<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
-<% end %>
+
+<ul class="list-group">
+  <% @questions.each do |question| %>
+    <li class="list-group-item">
+      <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      <% if false %>
+        <span class="badge badge-pill badge-info">Votes <%= question.total_votes %></span>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
 
-<!-- <form>
-  <input type="" name="" placeholder="">
-  <input type="" name="" placeholder="">
-  <input type="" name="" placeholder="">
-</form> -->
+
+<% if logged_in? %>
+<%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
+<br>
+<br>
+<form method="post" action="questions" >
+  <div class="form-group">
+    <label for="title_new">Add A New Question Title</label>
+    <input class="form-control" id="title_new" type="text" name="title" placeholder="Title">
+  </div>
+  <div class="form-group">
+    <label for="text_new">Add A New Question Body</label>
+    <textarea id="text_new" class="form-control" name="text" placeholder="My question is ..."></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit" value="Ask">Ask</button>
+</form>
+<% end %>
 
