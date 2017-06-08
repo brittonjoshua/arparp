@@ -1,7 +1,7 @@
 
 <h1>Title: <%= @question.title %></h1>
 <h3>Question: <%= @question.text %>
-<h4>Asked by: <%= @question.creator.name %></h4>
+<h4>Asked by: <%#= @question.creator.name %></h4>
 
 <form action="/questions/<%= @question.id %>/votes" method="post">
   <input type="submit" value="upvote">
@@ -13,9 +13,13 @@
   <%#= question.votes.total_votes %>
 <%# end %>
 
+<% @question.answers.each do |answer| %>
+  <%= answer.text %>
+<% end %>
+
 <form action="/answers" method="post">
-  <textarea name="text" cols="50" rows="5">
-    Enter your Answer...</textarea>
+  <input type="hidden" name="question_id" value="<%= @question.id %>">
+  <textarea name="text" cols="50" rows="5" placeholder=" Enter your Answer..."></textarea>
   <input type="submit" value="answer">
 
 
