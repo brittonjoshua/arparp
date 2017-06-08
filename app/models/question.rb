@@ -7,8 +7,4 @@ class Question < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates  :title, :text, :creator_id, presence: true
-
-  def total_votes
-    self.votes.inject(0) { |sum, vote| sum += vote.value }
-  end
 end
