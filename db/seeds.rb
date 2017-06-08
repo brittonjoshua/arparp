@@ -32,4 +32,26 @@ Question.create!(title: "Weight Per Feed", text: "What percentage of their body 
 Question.create!(title: "Average Weight", text: "How much do they weigh on average", best_answer_id: 1, creator: users.all.sample)
 
 
+# 5.times do
+#   comments = Comment.new(text: Faker::Hipster.sentence, commentator_id: users.all.sample)
+# end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
