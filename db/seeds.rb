@@ -1,10 +1,17 @@
-3.times do
+5.times do
   user = User.new(name: Faker::Name.name, password: "password")
   user.email = Faker::Internet.safe_email(user.name)
   user.save!
 end
 
 users = User.all
+
+# may need to make some votes
+# 22.times do
+#   vote = Vote.new(voter: users.sample, value: [-1,0,1].sample)
+# end
+
+
 
 Question.create!(title: "Food?", text: "What do sea lions eat?", best_answer_id: 1, creator: users.all.sample)
 
