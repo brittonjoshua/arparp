@@ -1,9 +1,12 @@
 <h1>Questions:</h1>
 
 <ul>
-<% @questions.each do |question| %>
-<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
-<% end %>
+  <% @questions.each do |question| %>
+  <li>
+    <a href="/questions/<%= question.id %>"><%= question.title %></a>
+    <span><%= question.votes.total_votes %></span>
+  </li>
+  <% end %>
 </ul>
 
 <!-- <form>
@@ -12,8 +15,4 @@
   <input type="" name="" placeholder="">
 </form> -->
 
-<!-- count total votes to questions -->
-<%# @questions.each do |question| %>
-  <%#= question.votes.total_votes %>
-<%# end %>
 
