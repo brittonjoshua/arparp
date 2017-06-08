@@ -6,5 +6,6 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer  :responder_id
 
       t.timestamps null: false
+    end
   end
 end
