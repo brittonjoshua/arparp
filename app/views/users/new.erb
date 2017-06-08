@@ -1,11 +1,14 @@
 <%= erb :'_errors', locals: { errors: @errors }, layout: false %>
 
-<form action="/sessions" method="post" class="login_form form-inline">
+<form action="/users" method="post" class="login_form form-inline">
+  <label for="name">Name</label>
+  <input type="text" name="user[name]" class="form-control mb-2 mr-sm-2 mb-sm-0" id="email" placeholder="Jack">
+
   <label for="email">Email</label>
-  <input type="text" name="email" class="form-control mb-2 mr-sm-2 mb-sm-0" id="email" placeholder="Jack21@gmail.com">
+  <input type="email" name="user[email]" class="form-control mb-2 mr-sm-2 mb-sm-0" id="email" placeholder="Jack21@gmail.com">
 
   <label for="password">Password</label>
-  <input type="password" name="password" class="form-control" id="inlineFormInputGroup">
+  <input type="password" name="user[password]" class="form-control" id="inlineFormInputGroup">
   </div>
 
   <button type="submit" class="btn btn-outline-success">Login</button>

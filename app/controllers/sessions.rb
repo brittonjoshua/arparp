@@ -17,7 +17,8 @@ post '/sessions' do
     #   channels = Channel.all
     #   erb :_show_all_all, locals: { channels: channels }, layout: false
     # else
-      redirect "/users/#{@user.id}"
+    redirect '/'
+      # redirect "/users/#{@user.id}"
     # end
   else
     @errors = ["Unfortunately, the system could not either find your username or verify your password."]
@@ -28,5 +29,5 @@ end
 delete '/sessions' do
   # logout
   session.delete(:user_id)
-  redirect '/channels'
+  redirect '/'
 end
