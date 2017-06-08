@@ -1,7 +1,7 @@
 
 <h1>Title: <%= @question.title %></h1>
 <h3>Question: <%= @question.text %>
-<h4>Asked by: <%#= @question.creator.name %></h4>
+<h4>Asked by: <%= @question.creator.name %></h4>
 
  <% if logged_in? %>
   <form action="/questions/<%= @question.id %>/votes" method="post">
