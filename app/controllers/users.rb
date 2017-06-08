@@ -1,7 +1,11 @@
 get '/users/new' do
   # register form
   @user = User.new
-  erb :'/users/new'
+  if request.xhr?
+    erb :'/users/_new', locals: { user: @user }, layout: false
+  else
+    erb :'/users/new'
+  end
 end
 
 post '/users' do
