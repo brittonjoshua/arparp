@@ -5,8 +5,8 @@ get '/' do
 end
 
 
-# post 'questions/:question_id/votes' do
-post 'questions/votes' do
+post 'questions/:question_id/votes' do
+# post 'questions/votes' do
 
   question = Question.find(parms[:question_id])
   uservote = question.votes.find(session[:user_id])
