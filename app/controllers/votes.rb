@@ -1,6 +1,7 @@
 
 
 post 'questions/:question_id/votes' do
+  authenticate!
   question = Question.find(parms[:question_id])
   uservote = question.votes.find_by(user_id: session[:user_id])
   @questions = Question.all
@@ -36,6 +37,7 @@ post 'questions/:question_id/votes' do
 end
 
 post '/answers/:answer_id/votes' do
+  authenticate!
   answer = Answer.find_by(id: params[:answer_id])
   uservote = answer.votes.find_by(user_id: session[:user_id])
   @question = Question.find_by(id: answer.question_id)

@@ -16,7 +16,7 @@
 
 
 <!-- votes for answers -->
-<% if logged_in? %>
+<% if logged_in? && @answer %>
   <form action="/answers/<%= @answer.id %>/votes" method="post">
     <input type="submit" name="upvote" value="upvote">
   </form>

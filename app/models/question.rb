@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
+  include Voteable
   belongs_to  :creator, class_name: "User"
   has_many  :answers
   has_one  :best_answer, class_name: "Answer"
@@ -6,4 +7,8 @@ class Question < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates  :title, :text, :creator_id, presence: true
+
+  def total_votes
+    self.votes.inject(0) { |sum, vote| sum += vote.value }
+  end
 end
