@@ -1,4 +1,4 @@
-get '/' do
+get '/questions' do
   @questions = Question.all
-  erb :'/index'
+  erb :'/questions/index'
 end
