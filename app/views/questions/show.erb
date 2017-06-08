@@ -1,1 +1,13 @@
-this page shows one question and all of the votes, etc associated with it.
+
+<!-- <form action="/questions/<%#= question.id %>/votes" method="post"> -->
+
+<form action="/questions/votes" method="post">
+  <input type="submit" value="upvote">
+  <input type="submit" value="downvote">
+</form>
+
+<!-- count total votes to questions -->
+<%# @questions.each do |question| %>
+  <%#= question.votes.total_votes %>
+<%# end %>
+

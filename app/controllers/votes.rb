@@ -1,7 +1,16 @@
-post 'questions/:question_id/votes' do
+# temp route on line 3
+
+get '/' do
+  erb :'questions/show'
+end
+
+
+# post 'questions/:question_id/votes' do
+post 'questions/votes' do
 
   question = Question.find(parms[:question_id])
   uservote = question.votes.find(session[:user_id])
+  @questions = Question.all
   # question.votes.create
   if params[:upvote]
     if uservote && uservote.value == 1
