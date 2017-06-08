@@ -3,7 +3,7 @@
 
 <ul>
 <% @questions.each do |question| %>
-<li><a href="/question/<%= question.id %>"><%= question.title %></a></li>
+<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
 <% end %>
 </ul>
 
@@ -12,4 +12,9 @@
   <input type="" name="" placeholder="">
   <input type="" name="" placeholder="">
 </form> -->
+
+<!-- count total votes to questions -->
+<%# @questions.each do |question| %>
+  <%#= question.votes.total_votes %>
+<%# end %>
 

@@ -4,12 +4,11 @@
 <h4>Asked by: <%= @question.creator.name %></h4>
 
 <form action="/questions/:question_id/votes" method="post">
-  <input type="submit" value="upvote">
-  <input type="submit" value="downvote">
+  <input type="submit" name="upvote" value="upvote">
+</form>
+<form action="/questions/:question_id/votes" method="post">
+  <input type="submit" name="downvote" value="downvote">
 </form>
 
-<!-- count total votes to questions -->
-<%# @questions.each do |question| %>
-  <%#= question.votes.total_votes %>
-<%# end %>
+
 

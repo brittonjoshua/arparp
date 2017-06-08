@@ -1,13 +1,6 @@
-# temp route on line 3
-
-get '/' do
-  erb :'questions/show'
-end
 
 
-# post 'questions/:question_id/votes' do
-post 'questions/votes' do
-
+post 'questions/:question_id/votes' do
   question = Question.find(parms[:question_id])
   uservote = question.votes.find(session[:user_id])
   @questions = Question.all
@@ -21,7 +14,7 @@ post 'questions/votes' do
       erb :'questions/show'
     else
       vote = question.votes.create(user_id: session[:user_id], value: 1)
-      erb :"/questions/show"  #should we redirect instead
+      redirect "/questions/index"  #should we redirect instead
     end
   elsif params[:downvote]
     if uservote && uservote.value = -1
@@ -32,7 +25,7 @@ post 'questions/votes' do
       erb :'questions/show'
     else
       vote = question.votes.create(user_id: session[:user_id], value: 1)
-      erb :'questions/show' #should we redirect instead
+      redirect "questions/index" #should we redirect instead
     end
   end
 end
