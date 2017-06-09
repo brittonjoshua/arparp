@@ -13,19 +13,13 @@
   <form action="/answers/<%= @answer.id %>/votes" method="post">
     <input type="submit" name="upvote" value="upvote">
   </form>
-
   <form action="/answers/<%= @answer.id %>/votes" method="post">
     <input type="submit" name="upvote" value="upvote">
   </form>
 <% end %>
-
-
-
 
 <ul id="answers-list">
   <% @question.answers.each do |answer| %>
     <%= erb :'questions/_answers', locals: {question: @question, answer: answer} %>
   <% end %>
 </ul>
-
-
