@@ -5,5 +5,4 @@ class Answer < ActiveRecord::Base
   has_many  :comments, as: :commentable
 
   validates  :text, presence: true
-
 end

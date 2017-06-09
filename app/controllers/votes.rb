@@ -1,36 +1,23 @@
 post '/questions/:question_id/votes' do
   authenticate!
   @question = Question.find(params[:question_id])
-  uservote = @question.votes.find_by(voter: current_user)
-  @questions = Question.all
-
   if params[:upvote]
-    if uservote && uservote.value == 1
-      @error = ['Aaarp! you have already up voted for this :/']
-      erb :'questions/show'
-    elsif uservote && uservote.value == -1
-      uservote.update_attributes(value: 1)
-      @question.total_votes.to_s
-      redirect "/questions/show"
+    @vote = Vote.new(voter_id: session[:user_id], value: 1)
+    @question.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
     else
-      vote = @question.votes.create(voter: current_user, value: 1)
-      @question.votes.total_votes.to_s
-      redirect "/questions/index"
-      # change to: redirect "/questions"
+        @errors = @vote.errors.full_messages
+        erb :'questions/show'
     end
-
   elsif params[:downvote]
-    if uservote && uservote.value = -1
-      @error = ['Aarp! you can only down vote once fool!!']
-      erb :'questions/show'
-    elsif uservote && uservote.value = 1
-      uservote.update_attributes(value: -1)
-      @question.total_votes.to_s
-      redirect "/questions/#{answer.question_id}"
+    @vote = Vote.new(voter_id: session[:user_id], value: -1)
+    @question.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
     else
-      vote = @question.votes.create(user_id: session[:user_id], value: -1)
-      @question.total_votes.to_s
-      redirect "/questions/index"
+      @errors = @vote.errors.full_messages
+      erb :'questions/show'
     end
   end
 end
