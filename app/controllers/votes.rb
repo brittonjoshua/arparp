@@ -76,19 +76,18 @@ end
 post '/questions/:question_id/comments/:id/votes' do
   authenticate!
   comment = Comment.find(params[:id])
-  # uservote = comment.votes.find_by(voter_id: session[:user_id])
   @question = Question.find(params[:question_id])
 
   if params[:upvote]
-    vote = comment.votes.new(voter_id: session[:user_id], value: 1)
-
-
-
-    Vote.create(voter)
-    comment.votes.create(voter_id: session[:user_id], value: 1)
+    vote = Vote.new(voter_id: session[:user_id], value: 1)
+    comment.votes << vote
+    vote.save!
     redirect "/questions/#{@question.id}"
   elsif params[:downvote]
-    comment.votes.create(voter_id: session[:user_id], value: -1)
+    vote = Vote.new(voter_id: session[:user_id], value: -1)
+    comment.votes << vote
+    vote.save!
+    redirect "/questions/#{@question.id}"
   end
 end
 
