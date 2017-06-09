@@ -13,10 +13,12 @@
   <!-- vote on each answer
  -->
  <!-- votes for answers -->
+  <span class="badge badge-pill badge-info">Votes <%= answer.total_votes %></span>
   <% if logged_in? %>
     <form action="/answers/<%= answer.id %>/votes" method="post">
       <input type="submit" name="upvote" value="upvote">
     </form>
+
     <form action="/answers/<%= answer.id %>/votes" method="post">
      <input type="submit" name="downvote" value="downvote">
     </form>
@@ -28,6 +30,7 @@
   <ul>
     <% answer.comments.each do |comment| %>
       <li><%= comment.commentor.name %> commented: <%= comment.text %>
+      <span class="badge badge-pill badge-info">Votes <%= comment.total_votes %></span>
       <% if logged_in? %>
         <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
           <input type="submit" name="upvote" value="upvote">

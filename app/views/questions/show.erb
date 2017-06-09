@@ -7,6 +7,7 @@
 <ul>
   <% @question.comments.each do |comment| %>
     <li><%= comment.text  %></li>
+    <span class="badge badge-pill badge-info">Votes <%= comment.total_votes %></span>
     <%= erb :'/votes/_question_comments', locals: { question: @question, comment: comment }, layout: false %>
   <% end %>
 </ul>
