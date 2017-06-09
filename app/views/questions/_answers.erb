@@ -4,10 +4,12 @@
       ** voted best answer **
     <% end %>
   </span>
+  <% if current_user == answer.question.creator %>
    <form action="/answers/<%= answer.id %>" method="post">
     <input type="hidden" name="_method" value="put">
     <input type="submit" value="best answer">
   </form>
+  <% end %>
 </li>
 
 

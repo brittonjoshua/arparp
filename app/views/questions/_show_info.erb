@@ -2,13 +2,18 @@
   <h1 class="display-3"><%= @question.title %></h1>
   <p class="lead"><%= @question.text %></p>
   <p >Asked by: <%= @question.creator.name %></p>
-  <%= erb :'/questions/_vote_on_question', locals: {question: @question}, layout: false %>
-  <hr class="my-4">
-  <p class="lead">
+  <% if logged_in? %>
+    <%= erb :'/questions/_vote_on_question', locals: {question: @question}, layout: false %>
+    <hr class="my-4">
+    <p class="lead">
     <a class="btn btn-primary btn-lg" href="#" role="button">Answer Question</a>
-    <%= erb :'/answers/_new_form', locals: { question: @question }, layout: false %>
+      <%= erb :'/answers/_new_form', locals: { question: @question }, layout: false %>
     <a class="btn btn-primary btn-lg" href="#" role="button">Comment on Question</a>
+    <%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
     <%= erb :'/questions/_new_comment', locals: { question: @question}, layout: false %>
+    <% else  %>
+      <p>You must sign in or register to answer, comment, or vote on a question.</p>
+    <% end %>
   </p>
 </div>
 
