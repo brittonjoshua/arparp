@@ -5,6 +5,7 @@
 <ul>
   <% @question.comments.each do |comment| %>
     <li><%= comment.text  %></li>
+    <%= erb :'/votes/_question_comments', locals: { question: @question, comment: comment }, layout: false %>
   <% end %>
 </ul>
 
