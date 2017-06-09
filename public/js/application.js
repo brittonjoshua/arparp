@@ -33,4 +33,20 @@ $(document).ready(function() {
     })
   })
 
+
+ $("#add-answer-form").on("submit", function(event){
+    event.preventDefault();
+    var $form = $(this);
+    var $formData = $form.serialize();
+    $.ajax({
+      url: $form.attr('action'),
+      method: $form.attr('method'),
+      data: $formData
+      })
+    .done(function(response){
+    $('ul').append(response);
+    $("#add-answer-form")[0].reset();
+    });
+ });
+
 });
