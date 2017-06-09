@@ -5,6 +5,7 @@ end
 
 get '/questions/:id' do
   @question = Question.find(params[:id])
+  @answer = @question.answers
   erb :'/questions/show'
 end
 

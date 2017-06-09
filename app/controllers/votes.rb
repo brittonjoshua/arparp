@@ -41,6 +41,7 @@ post '/answers/:answer_id/votes' do
   answer = Answer.find_by(id: params[:answer_id])
   uservote = answer.votes.find_by(user_id: session[:user_id])
   @question = Question.find_by(id: answer.question_id)
+  @answer = @question.answers
 
   if params[:upvote]
     if uservote && uservote.value == 1
