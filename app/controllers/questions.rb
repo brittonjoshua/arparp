@@ -9,7 +9,6 @@ get '/questions/:id' do
   erb :'/questions/show'
 end
 
-
 post '/questions' do
   authenticate!
   @question = Question.new(title: params[:title], text: params[:text], creator: current_user)

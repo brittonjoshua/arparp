@@ -53,8 +53,12 @@
 <% end %>
 
 
-
-
-
-
-
+<!-- votes for answers -->
+  <% if logged_in? %>
+    <form action="/answers/<%= answer.id %>/votes" method="post">
+      <input type="submit" name="upvote" value="upvote">
+    </form><br>
+    <form action="/answers/<%= answer.id %>/votes" method="post">
+     <input type="submit" name="downvote" value="downvote">
+    </form>
+  <% end %>

@@ -1,9 +1,11 @@
  <% if logged_in? %>
+   <%= erb :'_errors' %>
+
   <form action="/questions/<%= @question.id %>/votes" method="post">
     <input type="submit" name="upvote" value="upvote">
   </form>
 
   <form action="/questions/<%= @question.id %>/votes" method="post">
     <input type="submit" name="downvote" value="downvote">
-</form>
+  </form>
 <% end %>
