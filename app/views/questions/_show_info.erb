@@ -2,8 +2,11 @@
   <h1 class="display-3"><%= @question.title %></h1>
   <p class="lead"><%= @question.text %></p>
   <p >Asked by: <%= @question.creator.name %></p>
+  <%= erb :'/questions/_vote_on_question', locals: {question: @question}, layout: false %>
   <hr class="my-4">
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Click to add your answer</a>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Answer Question</a>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Comment on Question</a>
   </p>
 </div>
+

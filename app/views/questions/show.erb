@@ -1,15 +1,5 @@
 <%= erb :'questions/_show_info', locals: {question: @question}, layout: false %>
 
- <% if logged_in? %>
-  <form action="/questions/<%= @question.id %>/votes" method="post">
-    <input type="submit" name="upvote" value="upvote">
-  </form>
-
-  <form action="/questions/<%= @question.id %>/votes" method="post">
-    <input type="submit" name="downvote" value="downvote">
-</form>
-<% end %>
-
 <!-- comments on question -->
 <h3>Question Comments</h3>
 <ul>
