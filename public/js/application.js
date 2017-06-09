@@ -33,11 +33,7 @@ $(document).ready(function() {
     })
   })
 
-// find form answers are written into
-// prevent default submit
-// find data, action, method
-// make partial so response is only html from the new post
-// after ajax stuff, append the post to the list (ul) of answers
+
  $("#add-answer-form").on("submit", function(event){
     event.preventDefault();
     var $form = $(this);
@@ -50,8 +46,7 @@ $(document).ready(function() {
     .done(function(response){
     $('ul').append(response);
     $("#add-answer-form")[0].reset();
-
-    })
+    });
  });
 
 });
