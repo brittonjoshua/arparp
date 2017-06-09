@@ -36,6 +36,10 @@ Question.create!(title: "Average Weight", text: "How much do they weigh on avera
 questions = Question.all
 
 
+20.times do
+  Answer.create!(text: ["arp ","ARP "].sample * (1..10).to_a.sample, question: questions.sample, responder: users.sample)
+end
+
 15.times do
   comment = Comment.new(text: Faker::Hipster.sentence, commentor: users.all.sample)
   question = questions.sample
