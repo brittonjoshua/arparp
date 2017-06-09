@@ -1,4 +1,4 @@
-<h3>Answers</h3>
+
 <li><%= answer.text %>
   <span class="best-answer">
     <% if @question.best_answer_id == answer.id %>
@@ -52,13 +52,3 @@
   </form><br>
 <% end %>
 
-
-<!-- votes for answers -->
-  <% if logged_in? %>
-    <form action="/answers/<%= answer.id %>/votes" method="post">
-      <input type="submit" name="upvote" value="upvote">
-    </form><br>
-    <form action="/answers/<%= answer.id %>/votes" method="post">
-     <input type="submit" name="downvote" value="downvote">
-    </form>
-  <% end %>

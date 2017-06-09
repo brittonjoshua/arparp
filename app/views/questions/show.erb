@@ -2,32 +2,13 @@
 
 <%= erb :'questions/_show_info', locals: {question: @question}, layout: false %>
 
-
-<!-- braidy zach -->
-
 <%= erb :'questions/_new_question_comment', locals: {comment: @comment, question: @question}, layout: false %>
 
+<h3>Answers</h3>
 <ul id="answers-list">
   <% @question.answers.each do |answer| %>
     <%= erb :'questions/_answers', locals: {question: @question, answer: answer} %>
 </ul>
-
-<!-- master -->
-<!-- list comments on answers -->
-  <h3>Answer Comments</h3>
-  <ul>
-    <% answer.comments.each do |comment| %>
-      <li><%= comment.commentor.name %> commented: <%= comment.text %></li>
-    <% end %>
-  </ul>
-
-<!-- post comments on  answers -->
-  <% if logged_in? %>
-    <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
-      <textarea name="text" cols="50" rows="5" placeholder="Enter your comment on the answer..."></textarea>
-      <input type="submit" value="comment on answer">
-    </form><br>
-  <% end %>
 
 <% end %>
 
