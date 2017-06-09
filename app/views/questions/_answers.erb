@@ -10,6 +10,26 @@
     <input type="submit" value="best answer">
   </form>
   <% end %>
+  <!-- vote on each answer
+ -->
+ <!-- votes for answers -->
+  <% if logged_in? %>
+    <form action="/answers/<%= answer.id %>/votes" method="post">
+      <input type="submit" name="upvote" value="upvote">
+    </form>
+    <form action="/answers/<%= answer.id %>/votes" method="post">
+     <input type="submit" name="downvote" value="downvote">
+    </form>
+  <% end %>
+
+
+  <!-- list comments on answers -->
+  <h5>Answer Comments</h5>
+  <ul>
+    <% answer.comments.each do |comment| %>
+      <li><%= comment.commentor.name %> commented: <%= comment.text %></li>
+    <% end %>
+  </ul>
 </li>
 
 

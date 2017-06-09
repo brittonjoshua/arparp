@@ -18,23 +18,7 @@
     <%= erb :'questions/_answers', locals: {question: @question, answer: answer} %>
 </ul>
 
-<!-- votes for answers -->
-  <% if logged_in? %>
-    <form action="/answers/<%= answer.id %>/votes" method="post">
-      <input type="submit" name="upvote" value="upvote">
-    </form><br>
-    <form action="/answers/<%= answer.id %>/votes" method="post">
-     <input type="submit" name="downvote" value="downvote">
-    </form>
-  <% end %>
 
-<!-- list comments on answers -->
-  <h3>Answer Comments</h3>
-  <ul>
-    <% answer.comments.each do |comment| %>
-      <li><%= comment.commentor.name %> commented: <%= comment.text %></li>
-    <% end %>
-  </ul>
 
 <!-- post comments on  answers -->
   <% if logged_in? %>
