@@ -73,6 +73,36 @@ post '/answers/:answer_id/votes' do
 end
 
 
+post '/questions/:question_id/comments/:id/votes' do
+  authenticate!
+  comment = Comment.find(params[:id])
+  uservote = comment.votes.find_by(user_id: session[:user_id])
+  @question = Question.find(params[:question_id])
 
+  if params[:upvote]
+    if uservote && uservote.value == 1
+      @error = ['Aaarp! you have already up voted for this :/']
+      erb :'questions/show'
+    elsif uservote && uservote.value == -1
+      uservote.update_attributes(value: 1)
+      redirect "/questions/#{@question.id}"
+    else
+      comment.votes.create(user_id: session[:user_id], value: 1)
+      redirect "/questions/#{@question.id}"
+    end
+
+  elsif params[:downvote]
+    if uservote && uservote.value == -1
+      @error = ['Aarp! you can only down vote once fool!!']
+      erb :'questions/show'
+    elsif uservote && uservote.value == 1
+      uservote.update_attributes(value: -1)
+      redirect "/questions/#{@question.id}"
+    else
+      comment.votes.create(user_id: session[:user_id], value: -1)
+      redirect "/questions/#{@question.id}"
+    end
+  end
+end
 
 
