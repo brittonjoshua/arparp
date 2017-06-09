@@ -44,7 +44,7 @@ $(document).ready(function() {
       data: $formData
       })
     .done(function(response){
-    $('ul').append(response);
+    $('#answers-list').append(response);
     $("#add-answer-form")[0].reset();
     });
  });

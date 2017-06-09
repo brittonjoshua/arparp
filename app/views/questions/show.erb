@@ -22,7 +22,7 @@
 
 
 
-<ul>
+<ul id="answers-list">
   <% @question.answers.each do |answer| %>
     <%= erb :'questions/_answers', locals: {question: @question, answer: answer} %>
   <% end %>
