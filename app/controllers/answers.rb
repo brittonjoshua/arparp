@@ -1,4 +1,5 @@
 post '/answers' do
+  authenticate!
   answer = Answer.new(params)
   @question = answer.question
   if @current_user
@@ -19,6 +20,7 @@ post '/answers' do
 end
 
 put '/answers/:id' do
+  authenticate!
   answer = Answer.find(params[:id])
   question = answer.question
   # question.best_answer_id = answer.id
