@@ -1,5 +1,4 @@
 
-
 post '/questions/:question_id/votes' do
   authenticate!
   @question = Question.find(params[:question_id])
@@ -9,8 +8,8 @@ post '/questions/:question_id/votes' do
     if @vote.save
       redirect "/questions/#{@question.id}"
     else
-      @errors = @vote.errors.full_messages
-      erb :'questions/show'
+        @errors = @vote.errors.full_messages
+        erb :'questions/show'
     end
   elsif params[:downvote]
     @vote = Vote.new(voter_id: session[:user_id], value: -1)

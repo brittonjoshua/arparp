@@ -1,3 +1,4 @@
+<h3>Answers</h3>
 <li><%= answer.text %>
   <span class="best-answer">
     <% if @question.best_answer_id == answer.id %>
@@ -38,13 +39,16 @@
         <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
          <input type="submit" name="downvote" value="downvote">
         </form>
-  <% end %></li>
+        <% end %>
+  </li>
     <% end %>
   </ul>
 </li>
-
-
-
-
-
+<!-- post comments on  answers -->
+<% if logged_in? %>
+  <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
+    <textarea name="text" cols="50" rows="5" placeholder="Enter your comment on the answer..."></textarea>
+    <input type="submit" value="comment on answer">
+  </form><br>
+<% end %>
 
