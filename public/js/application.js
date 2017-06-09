@@ -70,6 +70,24 @@ $(document).ready(function() {
     });
   });
 
+  $("#question-comment").on("submit", function(event){
+    event.preventDefault();
+    // alert("hey");
+    var $form = $(this);
+    var $formData = $form.serialize();
+    $.ajax({
+      url: $form.attr('action'),
+      method: $form.attr('method'),
+      data: $formData
+    })
+    .done(function(response){
+      // console.log(response)
+      $('#comments-list').append(response);
+      $("#question-comment")[0].reset();
+
+    })
+  })
+
 });
 
 
