@@ -79,15 +79,23 @@ post '/questions/:question_id/comments/:id/votes' do
   @question = Question.find(params[:question_id])
 
   if params[:upvote]
-    vote = Vote.new(voter_id: session[:user_id], value: 1)
-    comment.votes << vote
-    vote.save!
-    redirect "/questions/#{@question.id}"
+    @vote = Vote.new(voter_id: session[:user_id], value: 1)
+    comment.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @vote.errors.full_messages
+      erb :'questions/show'
+    end
   elsif params[:downvote]
-    vote = Vote.new(voter_id: session[:user_id], value: -1)
-    comment.votes << vote
-    vote.save!
-    redirect "/questions/#{@question.id}"
+    @vote = Vote.new(voter_id: session[:user_id], value: -1)
+    comment.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @vote.errors.full_messages
+      erb :'questions/show'
+    end
   end
 end
 
