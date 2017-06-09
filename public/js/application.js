@@ -33,4 +33,30 @@ $(document).ready(function() {
     })
   })
 
+    $('.post-question-container').on("click", "#post-question", function(event) {
+      event.preventDefault();
+      // console.log("it is working");
+      var $form = $(this);
+      var method = $form.attr("method");
+      // console.log(method);
+      var action = $form.attr("action");
+      // console.log(action);
+      var data = $form.serialize();
+
+      request = $.ajax({
+        method: method,
+        url: action,
+        data: data
+      })
+      request.done(function(response) {
+        console.log(response);
+      })
+    })
+
 });
+
+
+
+
+
+
