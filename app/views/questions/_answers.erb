@@ -1,0 +1,11 @@
+<li><%= answer.text %>
+    <span class="best-answer"><% if @question.best_answer_id == answer.id %>
+    ** voted best answer **
+    <% end %></span>
+   <form action="/answers/<%= answer.id %>" method="post"> <input type="hidden" name="_method" value="put"><input type="submit" value="best answer"></form></li>
+
+
+
+
+
+
