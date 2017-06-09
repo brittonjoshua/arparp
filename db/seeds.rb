@@ -6,6 +6,8 @@ end
 
 users = User.all
 
+
+
 # may need to make some votes
 # 22.times do
 #   vote = Vote.new(voter: users.sample, value: [-1,0,1].sample)
@@ -31,10 +33,15 @@ Question.create!(title: "Weight Per Feed", text: "What percentage of their body 
 
 Question.create!(title: "Average Weight", text: "How much do they weigh on average", best_answer_id: 1, creator: users.all.sample)
 
+questions = Question.all
 
-# 5.times do
-#   comments = Comment.new(text: Faker::Hipster.sentence, commentator_id: users.all.sample)
-# end
+
+5.times do
+  comment = Comment.new(text: Faker::Hipster.sentence, commentor: users.all.sample)
+  question = questions.sample
+  question.comments << comment
+  comment.save!
+end
 
 
 
