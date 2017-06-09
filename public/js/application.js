@@ -65,8 +65,8 @@ $(document).ready(function() {
       data: $formData
       })
     .done(function(response){
-      $('ul').append(response);
-      $("#add-answer-form")[0].reset();
+    $('#answers-list').append(response);
+    $("#add-answer-form")[0].reset();
     });
   });
 
