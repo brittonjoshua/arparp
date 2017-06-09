@@ -28,18 +28,15 @@
 
 
 
+
 <ul>
 <% @question.answers.each do |answer| %>
-  <li><%= answer.text %>
-    <span class="best-answer"><% if @question.best_answer_id == answer.id %>
-    ** voted best answer **
-    <% end %></span>
-   <form action="/answers/<%= answer.id %>" method="post"> <input type="hidden" name="_method" value="put"><input type="submit" value="best answer"></form></li>
+  <%= erb :'questions/_answers', locals: {question: @question, answer: answer} %>
 <% end %>
 </ul>
 
-<form action="/answers" method="post">
-  <input type="hidden" name="question_id" value="<%= @question.id %>">
+<form id="add-answer-form" action="/answers" method="post">
+ <input type="hidden" name="question_id" value="<%= @question.id %>">
   <textarea name="text" cols="50" rows="5" placeholder=" Enter your Answer..."></textarea>
   <input type="submit" value="answer">
 </form>

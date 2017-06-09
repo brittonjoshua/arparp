@@ -33,6 +33,7 @@ $(document).ready(function() {
     })
   })
 
+
     $('#post-question').on("submit", function(event) {
       event.preventDefault();
       // console.log("it is working");
@@ -52,6 +53,23 @@ $(document).ready(function() {
         $('#post-question')[0].reset();
       })
     })
+
+
+  $("#add-answer-form").on("submit", function(event){
+    event.preventDefault();
+    var $form = $(this);
+    var $formData = $form.serialize();
+    $.ajax({
+      url: $form.attr('action'),
+      method: $form.attr('method'),
+      data: $formData
+      })
+    .done(function(response){
+      $('ul').append(response);
+      $("#add-answer-form")[0].reset();
+    });
+  });
+
 });
 
 

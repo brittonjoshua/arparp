@@ -1,8 +1,12 @@
 post '/answers' do
   answer = Answer.new(params)
-  answer.question.id =
+  @question = answer.question
   if answer.save
-    redirect "/questions/#{ answer.question.id }"
+      if request.xhr?
+        erb :'questions/_answers', layout: false, locals: {question: @question, answer: answer}
+      else
+      redirect "/questions/#{ answer.question.id }"
+      end
   else
     status 422
     @errors= answer.errors.full_messages
