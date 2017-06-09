@@ -13,7 +13,13 @@
 </form>
 <% end %>
 
-
+<!-- comments on question -->
+<h3>Question Comments</h3>
+<ul>
+  <% @question.comments.each do |comment| %>
+    <li><%= comment.text  %></li>
+  <% end %>
+</ul>
 
 <!-- votes for answers -->
 <% if logged_in? && @answer %>

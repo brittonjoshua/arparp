@@ -36,7 +36,7 @@ Question.create!(title: "Average Weight", text: "How much do they weigh on avera
 questions = Question.all
 
 
-5.times do
+15.times do
   comment = Comment.new(text: Faker::Hipster.sentence, commentor: users.all.sample)
   question = questions.sample
   question.comments << comment
