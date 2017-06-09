@@ -1,0 +1,9 @@
+ <% if logged_in? %>
+  <form action="/questions/<%= @question.id %>/comments/<%= comment.id %>/votes" method="post">
+    <input type="submit" name="upvote" value="upvote">
+  </form>
+
+  <form action="/questions/<%= @question.id %>/comments/<%= comment.id %>/votes" method="post">
+    <input type="submit" name="downvote" value="downvote">
+</form>
+<% end %>

@@ -9,7 +9,6 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Answer Question</a>
       <%= erb :'/answers/_new_form', locals: { question: @question }, layout: false %>
     <a class="btn btn-primary btn-lg" href="#" role="button">Comment on Question</a>
-    <%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
     <%= erb :'/questions/_new_comment', locals: { question: @question}, layout: false %>
     <% else  %>
       <p>You must sign in or register to answer, comment, or vote on a question.</p>

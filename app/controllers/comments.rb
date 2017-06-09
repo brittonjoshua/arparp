@@ -10,6 +10,7 @@ post '/questions/:id/comments' do
   end
 end
 
+
 post '/questions/:id/answers/:answer_id/comments' do
   question = Question.find_by(id: params[:id])
   answer = Answer.find_by(id: params[:answer_id])
@@ -20,3 +21,4 @@ post '/questions/:id/answers/:answer_id/comments' do
     erb :'/questions/show'
   end
 end
+
