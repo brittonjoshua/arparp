@@ -40,10 +40,19 @@ questions = Question.all
   Answer.create!(text: ["arp ","ARP "].sample * (1..10).to_a.sample, question: questions.sample, responder: users.sample)
 end
 
+answers = Answer.all
+
 15.times do
   comment = Comment.new(text: Faker::Hipster.sentence, commentor: users.all.sample)
   question = questions.sample
   question.comments << comment
+  comment.save!
+end
+
+10.times do
+  comment = Comment.new(text: Faker::Hipster.sentence, commentor: users.all.sample)
+  answer = answers.sample
+  answer.comments << comment
   comment.save!
 end
 

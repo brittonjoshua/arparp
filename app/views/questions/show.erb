@@ -1,7 +1,4 @@
-
-<h1>Title: <%= @question.title %></h1>
-<h3>Question: <%= @question.text %>
-<h4>Asked by: <%= @question.creator.name %></h4>
+<%= erb :'questions/_show_info', locals: {question: @question}, layout: false %>
 
  <% if logged_in? %>
   <form action="/questions/<%= @question.id %>/votes" method="post">
@@ -40,6 +37,16 @@
     <span class="best-answer"><% if @question.best_answer_id == answer.id %>
     ** voted best answer **
     <% end %></span>
+
+    <% if answer.comments.count > 0 %>
+      <h3>Answer comments</h3>
+      <ul>
+      <% answer.comments.each do |comment| %>
+        <li><%= comment.text %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
    <form action="/answers/<%= answer.id %>" method="post"> <input type="hidden" name="_method" value="put"><input type="submit" value="best answer"></form></li>
 <% end %>
 </ul>
