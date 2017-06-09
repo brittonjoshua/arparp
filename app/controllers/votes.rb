@@ -1,5 +1,3 @@
-
-
 post '/questions/:question_id/votes' do
   authenticate!
   @question = Question.find(params[:question_id])
@@ -42,6 +40,7 @@ post '/answers/:answer_id/votes' do
   answer = Answer.find_by(id: params[:answer_id])
   uservote = answer.votes.find_by(user_id: session[:user_id])
   @question = Question.find_by(id: answer.question_id)
+  @answer = @question.answers
 
   if params[:upvote]
     if uservote && uservote.value == 1
@@ -74,6 +73,30 @@ post '/answers/:answer_id/votes' do
 end
 
 
+post '/questions/:question_id/comments/:id/votes' do
+  authenticate!
+  comment = Comment.find(params[:id])
+  @question = Question.find(params[:question_id])
 
+  if params[:upvote]
+    @vote = Vote.new(voter_id: session[:user_id], value: 1)
+    comment.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @vote.errors.full_messages
+      erb :'questions/show'
+    end
+  elsif params[:downvote]
+    @vote = Vote.new(voter_id: session[:user_id], value: -1)
+    comment.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @vote.errors.full_messages
+      erb :'questions/show'
+    end
+  end
+end
 
 

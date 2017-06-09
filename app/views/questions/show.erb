@@ -1,3 +1,5 @@
+<%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
+
 <%= erb :'questions/_show_info', locals: {question: @question}, layout: false %>
 
 <!-- comments on question -->
@@ -5,21 +7,30 @@
 <ul>
   <% @question.comments.each do |comment| %>
     <li><%= comment.text  %></li>
+    <%= erb :'/votes/_question_comments', locals: { question: @question, comment: comment }, layout: false %>
   <% end %>
 </ul>
-
-<!-- votes for answers -->
-<% if logged_in? && @answer %>
-  <form action="/answers/<%= @answer.id %>/votes" method="post">
-    <input type="submit" name="upvote" value="upvote">
-  </form>
-  <form action="/answers/<%= @answer.id %>/votes" method="post">
-    <input type="submit" name="upvote" value="upvote">
-  </form>
-<% end %>
 
 <ul id="answers-list">
   <% @question.answers.each do |answer| %>
     <%= erb :'questions/_answers', locals: {question: @question, answer: answer} %>
-  <% end %>
 </ul>
+
+<!-- list comments on answers -->
+  <h3>Answer Comments</h3>
+  <ul>
+    <% answer.comments.each do |comment| %>
+      <li><%= comment.commentor.name %> commented: <%= comment.text %></li>
+    <% end %>
+  </ul>
+
+<!-- post comments on  answers -->
+  <% if logged_in? %>
+    <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">
+      <textarea name="text" cols="50" rows="5" placeholder="Enter your comment on the answer..."></textarea>
+      <input type="submit" value="comment on answer">
+    </form><br>
+  <% end %>
+
+<% end %>
+
