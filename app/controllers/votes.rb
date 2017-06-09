@@ -127,4 +127,29 @@ post '/questions/:question_id/comments/:id/votes' do
   end
 end
 
+post '/answers/:answer_id/comments/:comment_id/votes' do
+  authenticate!
+  comment = Comment.find(params[:comment_id])
+  answer = Answer.find(params[:answer_id])
+  @question = Question.find_by(id: answer.question_id)
+  if params[:upvote]
+    @vote = Vote.new(voter_id: session[:user_id], value: 1)
+    answer.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @vote.errors.full_messages
+      erb :'questions/show'
+    end
+  elsif params[:downvote]
+    @vote = Vote.new(voter_id: session[:user_id], value: -1)
+    answer.votes << @vote
+    if @vote.save
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @vote.errors.full_messages
+      erb :'questions/show'
+    end
+  end
+end
 

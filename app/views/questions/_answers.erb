@@ -27,7 +27,15 @@
   <h5>Answer Comments</h5>
   <ul>
     <% answer.comments.each do |comment| %>
-      <li><%= comment.commentor.name %> commented: <%= comment.text %></li>
+      <li><%= comment.commentor.name %> commented: <%= comment.text %>
+      <% if logged_in? %>
+        <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
+          <input type="submit" name="upvote" value="upvote">
+        </form>
+        <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
+         <input type="submit" name="downvote" value="downvote">
+        </form>
+  <% end %></li>
     <% end %>
   </ul>
 </li>
