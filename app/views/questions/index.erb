@@ -3,13 +3,7 @@
 
 <ul class="list-group">
   <% @questions.each do |question| %>
-    <li class="list-group-item">
-      <a href="/questions/<%= question.id %>"><%= question.title %></a>
-      <span class="badge badge-pill badge-info">Comments <%= question.comments.count %></span>
-      <% if false %>
-        <span class="badge badge-pill badge-info">Votes <%= question.total_votes %></span>
-      <% end %>
-    </li>
+    <%= erb :'/_show_questions', locals: {question: question} %>
   <% end %>
 </ul>
 
@@ -18,7 +12,7 @@
 <%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
 <br>
 <br>
-<form method="post" action="questions" >
+  <form id="post-question" method="post" action="questions" >
   <div class="form-group">
     <label for="title_new">Add A New Question Title</label>
     <input class="form-control" id="title_new" type="text" name="title" placeholder="Title">
@@ -30,4 +24,5 @@
   <button class="btn btn-primary" type="submit" value="Ask">Ask</button>
 </form>
 <% end %>
+
 

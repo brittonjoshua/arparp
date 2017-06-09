@@ -34,7 +34,28 @@ $(document).ready(function() {
   })
 
 
- $("#add-answer-form").on("submit", function(event){
+    $('#post-question').on("submit", function(event) {
+      event.preventDefault();
+      // console.log("it is working");
+      var $form = $(this);
+      var method = $form.attr("method");
+      var action = $form.attr("action");
+      var $data = $form.serialize();
+
+      request = $.ajax({
+        method: method,
+        url: action,
+        data: $data
+      })
+      request.done(function(response) {
+        console.log(response);
+        $('.list-group').append(response);
+        $('#post-question')[0].reset();
+      })
+    })
+
+
+  $("#add-answer-form").on("submit", function(event){
     event.preventDefault();
     var $form = $(this);
     var $formData = $form.serialize();
@@ -47,6 +68,12 @@ $(document).ready(function() {
     $('#answers-list').append(response);
     $("#add-answer-form")[0].reset();
     });
- });
+  });
 
 });
+
+
+
+
+
+
