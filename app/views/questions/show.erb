@@ -2,11 +2,7 @@
 
 <!-- comments on question -->
 <h3>Question Comments</h3>
-<ul>
-  <% @question.comments.each do |comment| %>
-    <li><%= comment.text  %></li>
-  <% end %>
-</ul>
+<%= erb :'questions/_new_question_comment', locals: {comment: @comment, question: @question}, layout: false %>
 
 <!-- votes for answers -->
 <% if logged_in? && @answer %>
