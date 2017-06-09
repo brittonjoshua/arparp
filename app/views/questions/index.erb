@@ -3,31 +3,26 @@
 
 <ul class="list-group">
   <% @questions.each do |question| %>
-    <li class="list-group-item">
-      <a href="/questions/<%= question.id %>"><%= question.title %></a>
-      <% if false %>
-        <span class="badge badge-pill badge-info">Votes <%= question.total_votes %></span>
-      <% end %>
-    </li>
+    <%= erb :'/_show_questions', locals: {question: question} %>
   <% end %>
 </ul>
 
-<div class="post-question-container"
+
 <% if logged_in? %>
 <%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
 <br>
 <br>
   <form id="post-question" method="post" action="questions" >
-    <div class="form-group">
-      <label for="title_new">Add A New Question Title</label>
-      <input class="form-control" id="title_new" type="text" name="title" placeholder="Title">
-    </div>
-    <div class="form-group">
-      <label for="text_new">Add A New Question Body</label>
-      <textarea id="text_new" class="form-control" name="text" placeholder="My question is ..."></textarea>
-    </div>
-    <button class="btn btn-primary" type="submit" value="Ask">Ask</button>
-  </form>
+  <div class="form-group">
+    <label for="title_new">Add A New Question Title</label>
+    <input class="form-control" id="title_new" type="text" name="title" placeholder="Title">
+  </div>
+  <div class="form-group">
+    <label for="text_new">Add A New Question Body</label>
+    <textarea id="text_new" class="form-control" name="text" placeholder="My question is ..."></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit" value="Ask">Ask</button>
+</form>
 <% end %>
-</div>
+
 
