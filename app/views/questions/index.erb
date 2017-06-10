@@ -1,6 +1,11 @@
+<%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
 <div class="jumbotron jumbotron-fluid">
-    <h1 class="display-3">Questions</h1>
-    <p class="lead">This is a forum for sea lions to respond with arps to human questions. Also, hipsters comment, per usual. Thanks Faker(s).</p>
+  <h1 class="display-3">Questions</h1>
+  <p class="lead">This is a forum for sea lions to respond with arps to human questions. Also, hipsters comment, per usual. Thanks Faker(s).</p>
+  <% if logged_in? %>
+    <hr class="my-4">
+    <%= erb :'/questions/_new_form', layout: false %>
+  <% end %>
 </div>
 
 <ul class="list-group">
@@ -8,23 +13,5 @@
     <%= erb :'/_show_questions', locals: {question: question} %>
   <% end %>
 </ul>
-
-
-<% if logged_in? %>
-<%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
-<br>
-<br>
-  <form id="post-question" method="post" action="questions" >
-  <div class="form-group">
-    <label for="title_new">Add A New Question Title</label>
-    <input class="form-control" id="title_new" type="text" name="title" placeholder="Title">
-  </div>
-  <div class="form-group">
-    <label for="text_new">Add A New Question Body</label>
-    <textarea id="text_new" class="form-control" name="text" placeholder="My question is ..."></textarea>
-  </div>
-  <button class="btn btn-primary" type="submit" value="Ask">Ask</button>
-</form>
-<% end %>
 
 
