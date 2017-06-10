@@ -33,6 +33,9 @@ $(document).ready(function() {
     })
   })
 
+    // <!-- running the errors reloads the whole page with adding q -->
+    // works if no errors
+
 
     $('#post-question').on("submit", function(event) {
       event.preventDefault();
@@ -51,6 +54,10 @@ $(document).ready(function() {
         console.log(response);
         $('.list-group').append(response);
         $('#post-question')[0].reset();
+      })
+      request.fail(function(response) {
+        // fail fail
+        // need to load that error message partial somewhere on the page
       })
     })
 
