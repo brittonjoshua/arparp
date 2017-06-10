@@ -17,11 +17,11 @@
   <span class="badge badge-pill badge-info">Votes <%= answer.total_votes %></span>
   <% if logged_in? %>
     <form action="/answers/<%= answer.id %>/votes" method="post">
-      <input type="submit" name="upvote" value="upvote">
+      <button class="btn btn-outline-primary btn-sm" type="submit" name="upvote" value="upvote">Upvote</button>
     </form>
 
     <form action="/answers/<%= answer.id %>/votes" method="post">
-     <input type="submit" name="downvote" value="downvote">
+     <button class="btn btn-outline-danger btn-sm" type="submit" name="downvote" value="downvote">Downvote</button>
     </form>
   <% end %>
 
@@ -34,10 +34,10 @@
       <span class="badge badge-pill badge-info">Votes <%= comment.total_votes %></span>
       <% if logged_in? %>
         <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
-          <input type="submit" name="upvote" value="upvote">
+          <button class="btn btn-sm btn-outline-primary" type="submit" name="upvote" value="upvote">Upvote</button>
         </form>
         <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
-         <input type="submit" name="downvote" value="downvote">
+         <button class="btn btn-sm btn-outline-danger" type="submit" name="downvote" value="downvote">Downvote</button>
         </form>
         <% end %>
   </li>

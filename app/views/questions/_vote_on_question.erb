@@ -2,10 +2,10 @@
    <%= erb :'_errors' %>
 
   <form action="/questions/<%= @question.id %>/votes" method="post">
-    <input type="submit" name="upvote" value="upvote">
+    <button class="btn btn-sm btn-outline-primary" type="submit" name="upvote" value="upvote">Upvote</button>
   </form>
 
   <form action="/questions/<%= @question.id %>/votes" method="post">
-    <input type="submit" name="downvote" value="downvote">
+    <button class="btn btn-sm btn-outline-danger" type="submit" name="downvote" value="downvote">Downvote</button>
   </form>
 <% end %>
