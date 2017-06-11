@@ -2,10 +2,10 @@ $(document).ready(function() {
   $('.navbar').on("click", ".login-link", function() {
     event.preventDefault();
 
-    var link = $(this).attr("href")
-    var method = 'get'
+    var link = $(this).attr("href");
+    var method = 'get';
 
-    request = $.ajax({
+    var request = $.ajax({
       url: link,
       method: method
     })
@@ -19,10 +19,10 @@ $(document).ready(function() {
     $('.navbar').on("click", "#register-link", function() {
     event.preventDefault();
 
-    var link = $(this).attr("href")
-    var method = 'get'
+    var link = $(this).attr("href");
+    var method = 'get';
 
-    request = $.ajax({
+    var request = $.ajax({
       url: link,
       method: method
     })
@@ -39,7 +39,6 @@ $(document).ready(function() {
 
     $('#post-question').on("submit", function(event) {
       event.preventDefault();
-      // console.log("it is working");
       var $form = $(this);
       var method = $form.attr("method");
       var action = $form.attr("action");
@@ -53,11 +52,10 @@ $(document).ready(function() {
       request.done(function(response) {
         console.log(response);
         $('.list-group').append(response);
-        $('#post-question')[0].reset();
+        // $('#post-question')[0].reset();
       })
       request.fail(function(response) {
-        // fail fail
-        // need to load that error message partial somewhere on the page
+        console.log("fail")
       })
     })
 
@@ -96,6 +94,22 @@ $(document).ready(function() {
   //   })
   // })
 
+  $("#questions_intro").on("click", "#add_question_form_button", function() {
+    event.preventDefault();
+
+    var link = $(this).attr("href");
+    var method = 'get';
+
+    var request = $.ajax({
+      url: link,
+      method: method
+    })
+
+    request.done(function(response) {
+      $("#add_question_form_button").hide()
+      $("#questions_intro").append(response);
+    })
+  })
 });
 
 

@@ -1,10 +1,10 @@
 <%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
-<div class="jumbotron jumbotron-fluid">
+<div id="questions_intro" class="jumbotron jumbotron-fluid">
   <h1 class="display-3">Questions</h1>
   <p class="lead">This is a forum for sea lions to respond with arps to human questions. Also, hipsters comment, per usual. Thanks Faker(s).</p>
   <% if logged_in? %>
     <hr class="my-4">
-    <%= erb :'/questions/_new_form', layout: false %>
+    <%= erb :'/questions/_new_form_button', layout: false %>
   <% end %>
 </div>
 
