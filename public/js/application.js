@@ -37,14 +37,14 @@ $(document).ready(function() {
     // works if no errors
 
 
-    $('#post-question').on("submit", function(event) {
+    $('#questions_intro').on("submit", '#post-question', function(event) {
       event.preventDefault();
       var $form = $(this);
       var method = $form.attr("method");
       var action = $form.attr("action");
       var $data = $form.serialize();
 
-      request = $.ajax({
+      var request = $.ajax({
         method: method,
         url: action,
         data: $data
@@ -52,7 +52,7 @@ $(document).ready(function() {
       request.done(function(response) {
         console.log(response);
         $('.list-group').append(response);
-        // $('#post-question')[0].reset();
+        $('#post-question')[0].reset();
       })
       request.fail(function(response) {
         console.log("fail")
