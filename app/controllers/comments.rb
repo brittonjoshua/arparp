@@ -26,3 +26,14 @@ post '/questions/:id/answers/:answer_id/comments' do
   end
 end
 
+get '/questions/:id/comments/new' do 
+  authenticate!
+  @question = Question.find(params[:id])
+
+  if request.xhr? 
+    erb :'/questions/_new_comment', locals: { question: @question}, layout: false
+  else 
+    erb :'/comments/new'
+  end
+end 
+

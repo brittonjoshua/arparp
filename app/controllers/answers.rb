@@ -1,6 +1,18 @@
 # we'll always be logged in with authenticate helper
 # need to do error handling in ajax with request.fail
 
+get '/questions/:id/answers/new' do 
+  authenticate!
+  @question = Question.find(params[:id])
+
+  if request.xhr?
+    erb :'/answers/_new_form', locals: { question: @question }, layout: false 
+  else 
+    erb :'/answers/_new_form'
+  end 
+  
+end 
+
 post '/answers' do
   authenticate!
   @answer = Answer.new(params)
@@ -17,6 +29,8 @@ post '/answers' do
     erb :'questions/show'
   end
 end
+
+
 
 
 put '/answers/:id' do

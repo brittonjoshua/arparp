@@ -110,7 +110,43 @@ $(document).ready(function() {
       $("#questions_intro").append(response);
     })
   })
+
+  $("#new_answer_forms").on("click", "#show_answer_form_button", function() {
+    event.preventDefault();
+    console.log("got here ok")
+
+    var link = $(this).attr("href");
+    var method = 'get';
+
+    var request = $.ajax({
+      url: link,
+      method: method
+    })
+
+    request.done(function(response) {
+      $("#show_answer_form_button").hide();
+      $("#new_answer_forms").append(response);
+    })
+  })
+
+  $("#new_question_comment_forms").on("click", "#show_question_comments_button", function() {
+    event.preventDefault();
+
+    var link = $(this).attr("href");
+    var method = 'get';
+
+    var request = $.ajax({
+      url: link,
+      method: method
+    })
+
+    request.done(function(response) {
+      $("#show_question_comments_button").hide();
+      $("#new_question_comment_forms").append(response);
+    })
+  })
 });
+
 
 
 

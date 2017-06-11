@@ -7,10 +7,12 @@
     <%= erb :'/questions/_vote_on_question', locals: {question: @question}, layout: false %>
     <hr class="my-4">
     <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Answer Question</a>
-      <%= erb :'/answers/_new_form', locals: { question: @question }, layout: false %>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Comment on Question</a>
-    <%= erb :'/questions/_new_comment', locals: { question: @question}, layout: false %>
+    <div id="new_answer_forms">
+      <%= erb :'/answers/_new_form_button', layout: false %>
+    </div>
+    <div id="new_question_comment_forms">
+      <a class="btn btn-primary btn-lg" href="/questions/<%= @question.id %>/comments/new" id="show_question_comments_button" role="button">Comment on Question</a>
+    </div>
     <% else  %>
       <p>You must sign in or register to answer, comment, or vote on a question.</p>
     <% end %>
