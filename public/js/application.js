@@ -55,9 +55,14 @@ $(document).ready(function() {
         $('#post-question')[0].reset();
       })
       request.fail(function(response) {
-        console.log("fail")
-      })
+      // finds and removes previous error
+      $("body").find("#all_errors").remove();
+
+      // appends to end of horses list
+      // may want to find a better place for this
+      $form.before(response.responseText);
     })
+  })
 
 
   $("#add-answer-form").on("submit", function(event){

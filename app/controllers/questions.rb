@@ -3,16 +3,16 @@ get '/questions' do
   erb :'/questions/index'
 end
 
-get '/questions/new' do 
+get '/questions/new' do
   authenticate!
   @question = Question.new
 
-  if request.xhr? 
+  if request.xhr?
     erb :'/questions/_new_form', locals: { question: @question }, layout: false
-  else 
+  else
     redirect '/questions/new'
-  end 
-end 
+  end
+end
 
 get '/questions/:id' do
   @question = Question.find(params[:id])
@@ -30,9 +30,14 @@ post '/questions' do
       redirect "/questions/#{@question.id}"
     end
   else
-    @questions = Question.all
-    @errors = @question.errors.full_messages
-    erb :'/questions/index', layout: false
+    if request.xhr?
+      status 422
+      @questions = Question.all
+      @errors = @question.errors.full_messages
+      erb :'/_errors', locals: { errors: @errors }, layout: false
+    else
+      redirect '/'
+    end
   end
 end
 
