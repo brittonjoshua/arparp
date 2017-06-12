@@ -1,7 +1,9 @@
-<% if @errors %>
-  <ul>
-  <% @errors.each do |error| %>
-    <li><%= error %></li>
+<div id="all_errors">
+  <% if @errors %>
+    <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
-<% end %>
+</div>

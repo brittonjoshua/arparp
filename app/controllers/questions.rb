@@ -31,6 +31,7 @@ post '/questions' do
     end
   else
     if request.xhr?
+      status 422
       @questions = Question.all
       @errors = @question.errors.full_messages
       erb :'/_errors', locals: { errors: @errors }, layout: false
