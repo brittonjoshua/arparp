@@ -2,10 +2,10 @@ $(document).ready(function() {
   $('.navbar').on("click", ".login-link", function() {
     event.preventDefault();
 
-    var link = $(this).attr("href")
-    var method = 'get'
+    var link = $(this).attr("href");
+    var method = 'get';
 
-    request = $.ajax({
+    var request = $.ajax({
       url: link,
       method: method
     })
@@ -19,10 +19,10 @@ $(document).ready(function() {
     $('.navbar').on("click", "#register-link", function() {
     event.preventDefault();
 
-    var link = $(this).attr("href")
-    var method = 'get'
+    var link = $(this).attr("href");
+    var method = 'get';
 
-    request = $.ajax({
+    var request = $.ajax({
       url: link,
       method: method
     })
@@ -33,16 +33,18 @@ $(document).ready(function() {
     })
   })
 
+    // <!-- running the errors reloads the whole page with adding q -->
+    // works if no errors
 
-    $('#post-question').on("submit", function(event) {
+
+    $('#questions_intro').on("submit", '#post-question', function(event) {
       event.preventDefault();
-      // console.log("it is working");
       var $form = $(this);
       var method = $form.attr("method");
       var action = $form.attr("action");
       var $data = $form.serialize();
 
-      request = $.ajax({
+      var request = $.ajax({
         method: method,
         url: action,
         data: $data
@@ -51,6 +53,9 @@ $(document).ready(function() {
         console.log(response);
         $('.list-group').append(response);
         $('#post-question')[0].reset();
+      })
+      request.fail(function(response) {
+        console.log("fail")
       })
     })
 
@@ -89,7 +94,59 @@ $(document).ready(function() {
   //   })
   // })
 
+  $("#questions_intro").on("click", "#add_question_form_button", function() {
+    event.preventDefault();
+
+    var link = $(this).attr("href");
+    var method = 'get';
+
+    var request = $.ajax({
+      url: link,
+      method: method
+    })
+
+    request.done(function(response) {
+      $("#add_question_form_button").hide()
+      $("#questions_intro").append(response);
+    })
+  })
+
+  $("#new_answer_forms").on("click", "#show_answer_form_button", function() {
+    event.preventDefault();
+    console.log("got here ok")
+
+    var link = $(this).attr("href");
+    var method = 'get';
+
+    var request = $.ajax({
+      url: link,
+      method: method
+    })
+
+    request.done(function(response) {
+      $("#show_answer_form_button").hide();
+      $("#new_answer_forms").append(response);
+    })
+  })
+
+  $("#new_question_comment_forms").on("click", "#show_question_comments_button", function() {
+    event.preventDefault();
+
+    var link = $(this).attr("href");
+    var method = 'get';
+
+    var request = $.ajax({
+      url: link,
+      method: method
+    })
+
+    request.done(function(response) {
+      $("#show_question_comments_button").hide();
+      $("#new_question_comment_forms").append(response);
+    })
+  })
 });
+
 
 
 

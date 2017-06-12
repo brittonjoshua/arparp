@@ -1,11 +1,13 @@
+
+<!-- running the errors reloads the whole page with adding q -->
 <%= erb :'/_errors', locals: {errors: @errors}, layout: false %>
 
 <%= erb :'questions/_show_info', locals: {question: @question}, layout: false %>
 
-<%= erb :'questions/_new_question_comment', locals: {comment: @comment, question: @question}, layout: false %>
+<%= erb :'questions/_new_question_comment', locals: { question: @question}, layout: false %>
 
 <h3>Answers</h3>
-<ul id="answers-list">
+<ul class="list-group" id="answers-list">
   <% @question.answers.each do |answer| %>
     <%= erb :'questions/_answers', locals: {question: @question, answer: answer} %>
 </ul>

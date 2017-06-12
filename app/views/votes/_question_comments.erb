@@ -1,9 +1,9 @@
  <% if logged_in? %>
   <form action="/questions/<%= @question.id %>/comments/<%= comment.id %>/votes" method="post">
-    <input type="submit" name="upvote" value="upvote">
+    <button class="btn btn-outline-primary btn-sm" type="submit" name="upvote" value="upvote">Upvote</button>
   </form>
 
   <form action="/questions/<%= @question.id %>/comments/<%= comment.id %>/votes" method="post">
-    <input type="submit" name="downvote" value="downvote">
+    <button class="btn btn-outline-danger btn-sm" type="submit" name="downvote" value="downvote">Downvote</button>
 </form>
 <% end %>

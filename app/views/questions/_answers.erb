@@ -1,5 +1,4 @@
-
-<li><%= answer.text %>
+<li class="list-group-item"><%= answer.text %>
   <span class="best-answer">
     <% if @question.best_answer_id == answer.id %>
       ** voted best answer **
@@ -17,33 +16,31 @@
   <span class="badge badge-pill badge-info">Votes <%= answer.total_votes %></span>
   <% if logged_in? %>
     <form action="/answers/<%= answer.id %>/votes" method="post">
-      <input type="submit" name="upvote" value="upvote">
+      <button class="btn btn-outline-primary btn-sm" type="submit" name="upvote" value="upvote">Upvote</button>
     </form>
 
     <form action="/answers/<%= answer.id %>/votes" method="post">
-     <input type="submit" name="downvote" value="downvote">
+     <button class="btn btn-outline-danger btn-sm" type="submit" name="downvote" value="downvote">Downvote</button>
     </form>
   <% end %>
-
+</li>
 
   <!-- list comments on answers -->
-  <h5>Answer Comments</h5>
-  <ul>
+  <ul class="list-group">
     <% answer.comments.each do |comment| %>
-      <li><%= comment.commentor.name %> commented: <%= comment.text %>
-      <span class="badge badge-pill badge-info">Votes <%= comment.total_votes %></span>
-      <% if logged_in? %>
-        <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
-          <input type="submit" name="upvote" value="upvote">
-        </form>
-        <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
-         <input type="submit" name="downvote" value="downvote">
-        </form>
+      <li class="list-group-item"><%= comment.commentor.name %> commented: <%= comment.text %>
+        <span class="badge badge-pill badge-info">Votes <%= comment.total_votes %></span>
+        <% if logged_in? %>
+          <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
+            <button class="btn btn-sm btn-outline-primary" type="submit" name="upvote" value="upvote">Upvote</button>
+          </form>
+          <form action='/answers/<%= answer.id %>/comments/<%= comment.id %>/votes' method="post">
+            <button class="btn btn-sm btn-outline-danger" type="submit" name="downvote" value="downvote">Downvote</button>
+          </form>
         <% end %>
-  </li>
+      </li>
     <% end %>
   </ul>
-</li>
 <!-- post comments on  answers -->
 <% if logged_in? %>
   <form method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments">

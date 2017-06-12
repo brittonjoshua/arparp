@@ -1,23 +1,37 @@
+# we'll always be logged in with authenticate helper
+# need to do error handling in ajax with request.fail
+
+get '/questions/:id/answers/new' do 
+  authenticate!
+  @question = Question.find(params[:id])
+
+  if request.xhr?
+    erb :'/answers/_new_form', locals: { question: @question }, layout: false 
+  else 
+    erb :'/answers/_new_form'
+  end 
+  
+end 
+
 post '/answers' do
   authenticate!
-  answer = Answer.new(params)
-  @question = answer.question
-  if logged_in?
-    if answer.save
-      if request.xhr?
-        erb :'questions/_answers', layout: false, locals: {question: @question, answer: answer}
-      else
-      redirect "/questions/#{ answer.question.id }"
-      end
+  @answer = Answer.new(params)
+  @question = @answer.question
+  if @answer.save
+    if request.xhr?
+      erb :'questions/_answers', layout: false, locals: {question: @question, answer: @answer}
     else
-      status 422
-      @errors = answer.errors.full_messages
-      erb :'questions/show'
+        redirect "/questions/#{@answer.question.id }"
     end
   else
-    @errors = ['You must be logged in to post an answer.']
+    status 422
+    @errors = @answer.errors.full_messages
+    erb :'questions/show'
   end
 end
+
+
+
 
 put '/answers/:id' do
   authenticate!
